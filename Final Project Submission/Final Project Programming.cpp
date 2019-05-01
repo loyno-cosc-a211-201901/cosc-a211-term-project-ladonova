@@ -9,6 +9,9 @@
 #include <vector>
 
 using namespace std;
+
+string characterName;
+
 void wait()
 {
     cin.ignore(1);
@@ -61,11 +64,13 @@ bool atCreek = false;
 bool headingSouth = false;
 bool deepForest = false;
 bool southForest = false;
+bool southCreek = false;
 string firstDecision;
 string secondDecision;
 string thirdDecision;
 string fourthDecision;
 string fifthDecision;
+string sixthDecision;
 int goldAmount = 100;
 int scoreCounter = 0;
 
@@ -118,7 +123,7 @@ else if(firstDecision== "$"){
   cout << "You have " << goldAmount <<" gold." << endl;
 }
 else if(firstDecision== "Q" ||firstDecision== "q"){
-  cout << "Thank you for playing!" << endl;
+  cout << "Thank you for playing " << characterName << "!"<< endl;
   quitGame = true;
   cout << "Your final score was " << scoreCounter << "." << endl;
   exit(0);
@@ -183,7 +188,7 @@ else if(secondDecision== "$"){
   cout << "You have "<< goldAmount<< " gold." << endl;
 }
 else if(secondDecision== "Q" ||secondDecision== "q"){
-  cout << "Thank you for playing!" << endl;
+  cout << "Thank you for playing " << characterName << "!"<< endl;
   quitGame = true;
   cout << "Your final score was " << scoreCounter << "." << endl;
   exit(0);
@@ -242,7 +247,7 @@ do{
     cout << "You have "<< goldAmount<< " gold." << endl;
   }
   else if(thirdDecision== "Q" ||thirdDecision== "q"){
-    cout << "Thank you for playing!" << endl;
+    cout << "Thank you for playing " << characterName << "!"<< endl;
     quitGame = true;
     cout << "Your final score was " << scoreCounter << "." << endl;
     exit(0);
@@ -263,11 +268,14 @@ if(fourthDecision== "E"|| fourthDecision== "e")
 {
 cout << "You move east into the forest." << endl;
 inForest = true;
+outsideTavern = false;
+invChecked = false;
 }
 else if(fourthDecision== "W"||fourthDecision== "w") {
 cout << "You move west towards the Wandering Creek." << endl;
 atCreek = true;
 outsideTavern = false;
+invChecked = false;
 
 }
 else if(fourthDecision== "N"||fourthDecision== "n") {
@@ -307,7 +315,7 @@ else if(fourthDecision== "$"){
   cout << "You have "<< goldAmount<< " gold." << endl;
 }
 else if(fourthDecision== "Q" ||fourthDecision== "q"){
-  cout << "Thank you for playing!" << endl;
+  cout << "Thank you for playing " << characterName << "!"<< endl;
   quitGame = true;
   cout << "Your final score was " << scoreCounter << "." << endl;
   exit(0);
@@ -368,7 +376,7 @@ do{
     cout << "You have "<< goldAmount<< " gold." << endl;
   }
   else if(fifthDecision== "Q" ||fourthDecision== "q"){
-    cout << "Thank you for playing!" << endl;
+    cout << "Thank you for playing " << characterName << "!"<< endl;
     quitGame = true;
     cout << "Your final score was " << scoreCounter << "." << endl;
     exit(0);
@@ -383,6 +391,60 @@ do{
 while(inForest == true && quitGame == false);
 
 do{
+  cout << "You are at the shore of the Wandering Creek." << endl;
+  cout << "In front there lies a dock and a ferryman." << endl;
+
+  cin >> sixthDecision;
+
+  if(sixthDecision== "E"|| sixthDecision== "e")
+  {
+  outsideTavern = true;
+  }
+  else if(sixthDecision== "W"||sixthDecision== "w") {
+  cout << "The creek is to wide to swim across." << endl;
+
+  }
+  else if(sixthDecision== "N"||sixthDecision== "n") {
+  cout << "The northern roots of The Wandering Creek are high in the mountains." << endl;
+  }
+  else if(sixthDecision== "S"||sixthDecision== "s"){
+    cout << "You are heading south " << endl;
+    cout << "You come across an abandoned house." << endl;
+    southCreek = true;
+
+  }
+  else if(fifthDecision== "I"||fifthDecision=="i"){
+  cout << "Your inventory: " << endl;
+    for(i = inventory.begin(); i != inventory.end(); ++i)
+      cout << *i << endl;
+
+  }
+  else if(fifthDecision== "H"||fifthDecision=="h"){
+    help();
+  }
+  else if(fifthDecision== "A"||fifthDecision== "a"){
+    cout << "Nobody to attack." << endl;
+
+  }
+  else if(fifthDecision== "#"){
+    cout << "Your score is " << scoreCounter <<"." << endl;
+  }
+  else if(fifthDecision== "$"){
+    cout << "You have "<< goldAmount<< " gold." << endl;
+  }
+  else if(fifthDecision== "Q" ||fourthDecision== "q"){
+    cout << "Thank you for playing " << characterName << "!"<< endl;
+    quitGame = true;
+    cout << "Your final score was " << scoreCounter << "." << endl;
+    exit(0);
+  }
+  else{
+    cout << "Not sure what you mean."<< endl;
+    cout << "Enter 'H' to check the help menu for user commands." << endl;
+  }
+
+
+
 
 }
 while(atCreek == true && quitGame == false);
@@ -390,7 +452,6 @@ while(atCreek == true && quitGame == false);
 
 
 int main(){
-string characterName;
 char startChoice;
 bool chooseAgain = true;
 titleScreen();
@@ -415,10 +476,12 @@ titleScreen();
 
     case '2':
     chooseAgain = false;
+    cout << "Still in progress, coming soon!" << endl;
     break;
 
     case '3':
     chooseAgain = false;
+    cout << "Still in progress, coming soon!" << endl;
     break;
 
     case '4':
