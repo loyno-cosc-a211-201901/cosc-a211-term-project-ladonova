@@ -34,6 +34,7 @@ cout << "Enter your character's name: " << endl;
 void move(bool north, bool south, bool east, bool west){
   char direction;
   cout << "Which direction do you want to move?" << endl;
+  cout << endl;
   if(north== true)
   cout << " N " << endl;
   if(west== true)
